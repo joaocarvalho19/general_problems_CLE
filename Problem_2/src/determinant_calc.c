@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
+#include <time.h>
 #include <unistd.h>
 
 int M;
@@ -120,7 +121,6 @@ int** process_file(FILE *file){
 }
 
 
-
 /** Compute the determinant of the matrix
  *
  * @param c
@@ -131,10 +131,10 @@ int calc_determinant(){
 }
 
 int main(int argc, char **argv){
-    struct timespec start, end;
-    clock_gettime(CLOCK_MONOTONIC_RAW, &start);
+    // Calculate the time taken
+    clock_t t;
+    t = clock();
 
-    //time_t start_time = time(NULL);
     FILE *file;
 
     //for all files in arguments
@@ -150,11 +150,9 @@ int main(int argc, char **argv){
         fclose(file);
     }
 
-    sleep(5);
-    clock_gettime(CLOCK_MONOTONIC_RAW, &end);
-
-    uint64_t delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
-    printf("Elapsed time = %f \t start time: %f\t end time:%f\n",  delta_us, start.tv_sec, end.tv_sec);
+    t = clock() - t;
+    double time_taken = ((double)t)/CLOCKS_PER_SEC; // calculate the elapsed time
+    printf("Elapsed time: %f seconds\n", time_taken);
 
     return 0;
 }
