@@ -10,13 +10,10 @@ int N;
 static void printUsage(char *cmdName);
 #define MAX_STRING_SIZE 20
 
+/** \brief gaussian elimination process return { 1-singular matrix; 0-upper triangular} */
 int gaussianElimination(double mat[N][N]);
 
-/** return matrix determinant
- *
- * @param mat
- * @return
- */
+/** \brief return matrix determinant  */
 double det(double mat[N][N]){
     float res = 1;
     // gaussian elimination process
@@ -32,12 +29,7 @@ double det(double mat[N][N]){
     return res;
 }
 
-/** swap row i to j and vice-versa
- *
- * @param mat
- * @param i
- * @param j
- */
+/** \brief swap row i to j and vice-versa  */
 void swap_row(double mat[N][N], int i, int j){
     for (int k=0; k<=N; k++){
         double temp = mat[i][k];
@@ -46,11 +38,7 @@ void swap_row(double mat[N][N], int i, int j){
     }
 }
 
-/** gaussian elimination process return { 1-singular matrix; 0-upper triangular}
- *
- * @param matrix[N][N]
- * @return bool
- */
+/** \brief gaussian elimination process return { 1-singular matrix; 0-upper triangular} */
 int gaussianElimination(double mat[N][N]){
     for (int k=0; k<N; k++){
         int index_pivot = k;
@@ -80,10 +68,8 @@ int gaussianElimination(double mat[N][N]){
     }
     return 0;
 }
-/** print the matrix
- *
- * @param matrix[N][N]
- */
+
+/** \brief print the matrix */
 void showMatrix(double mat[N][N]){
     /* Display the matrix */
     for (int i = 0; i < N; i++){
@@ -94,12 +80,7 @@ void showMatrix(double mat[N][N]){
     }
 }
 
-
-/** Read and process file content
- *
- * @param file
- * @return int
- */
+/** \brief Read and process file content */
 int** process_file(FILE *file){
     fread(&M,sizeof(M),1,file);
     printf("Number of matrices to be read = %d\n", M);
@@ -123,6 +104,7 @@ int** process_file(FILE *file){
     return 0;
 }
 
+/** \brief print usage  */
 static void printUsage(char *cmdName){
     fprintf(stderr, "\nSynopsis: %s OPTIONS [filename / positive number]\n"
     " OPTIONS:\n"
@@ -131,7 +113,7 @@ static void printUsage(char *cmdName){
     " -n --- positive number\n", cmdName);
 }
 
-
+/** \brief main function  */
 int main(int argc, char **argv){
     int opt; /* selected option */
     //char *fName = "no name"; /* file name (initialized to "no name" by default) */
