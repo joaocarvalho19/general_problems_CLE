@@ -156,6 +156,7 @@ int main(int argc, char **argv){
         return EXIT_FAILURE;
     }
 
+    if (fileCounter == 0) printUsage(basename (argv[0]));
 
     //for all files in arguments
     for (int i = 0; i < fileCounter; ++i) {
@@ -200,6 +201,10 @@ int main(int argc, char **argv){
             }
             last_char = c;
         };
+
+        if (isCharToWord(last_char)) consonant_end_words++;
+
+
 
 
         printf("\nFile: %s\n", fName);
